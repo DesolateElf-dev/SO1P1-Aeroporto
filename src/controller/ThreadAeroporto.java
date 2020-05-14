@@ -1,23 +1,52 @@
 package controller;
 
+import java.util.concurrent.Semaphore;
+
 public class ThreadAeroporto extends Thread{
 	
 	private int idAviao;
-	private static int posicaoDecolagem;
+	private Semaphore semaforoPista;
+	private Semaphore pistaSul;
+	private Semaphore pistaNorte;
 	
-	public ThreadAeroporto(int idAviao) {
+	public ThreadAeroporto(int idAviao, Semaphore semaforoPista, Semaphore pistaNorte, Semaphore pistaSul) {
 		this.idAviao = idAviao;
+		this.semaforoPista = semaforoPista;
+		this.pistaNorte = pistaNorte;
+		this.pistaSul = pistaSul;
 	}
 	
 	@Override
 	public void run() { //procedimento decolagem em 4 fases
-		aviaoManobrando();
-		aviaoTaxiando();
-		aviaoDecolando();
-		aviaoAfastando();
+		
+		try {
+			semaforoPista.acquire();//semaforo para dois aviões circulando na pista
+			aviaoManobrando();
+			aviaoTaxiando();
+			
+			int pista = (int)((Math.random()*2)+1);//aleatoriza 1 para pistaNorte ou 2 para pistaSul
+			if (pista == 1) {
+				pistaNorte.acquire();
+				aviaoDecolando(pista);
+			} else {
+				pistaSul.acquire();
+				aviaoDecolando(pista);
+			}
+			
+			aviaoAfastando();
+			
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("O avião "+idAviao+" se afastou da área");
+			semaforoPista.release();
+			pistaSul.release();
+			pistaNorte.release();
+		}
 	}
 	
 	private void aviaoManobrando() {
+		System.out.println("O avião "+idAviao+" está manobrando");
 		int tempo = (int)((Math.random()*5)+3);	//aleatoriza um tempo entre 3 e 7 segundos
 		try {
 			sleep(tempo);
@@ -27,6 +56,7 @@ public class ThreadAeroporto extends Thread{
 	}
 	
 	private void aviaoTaxiando() {
+		System.out.println("O avião "+idAviao+" está taxiando");
 		int tempo = (int)((Math.random()*6)+5);//aleatoriza um tempo entre 5 e 10 segundos
 		try {
 			sleep(tempo);
@@ -35,7 +65,14 @@ public class ThreadAeroporto extends Thread{
 		}
 	}
 	
-	private void aviaoDecolando() {
+	private void aviaoDecolando(int pista) {
+		
+		if(pista == 1) {
+			System.out.println("O avião "+idAviao+" está decolando pela pista Norte");
+		} else {
+			System.out.println("O avião "+idAviao+" está decolando pela pista Sul");
+		}
+		
 		int tempo = (int)((Math.random()*4)+1);//aleatoriza um tempo entre 1 e 4 segundos
 		try {
 			sleep(tempo);
