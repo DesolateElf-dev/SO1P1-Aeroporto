@@ -13,7 +13,7 @@ public class Principal {
 		Semaphore pistaSul = new Semaphore(1);
 		Semaphore pistaNorte = new Semaphore(1);
 
-		for(int idAviao=0 ; idAviao<14 ; idAviao++) {
+		for(int idAviao=0 ; idAviao<12 ; idAviao++) {
 			Thread tAeroporto = new ThreadAeroporto(idAviao, semaforoPista, pistaNorte, pistaSul);
 			tAeroporto.start();
 		}
