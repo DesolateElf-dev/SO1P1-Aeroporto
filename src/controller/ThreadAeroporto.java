@@ -38,7 +38,7 @@ public class ThreadAeroporto extends Thread{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println("O avi�o "+idAviao+" se afastou da �rea");
+			System.out.println("O avião "+idAviao+" se afastou da área");
 			semaforoPista.release();
 			pistaSul.release();
 			pistaNorte.release();
@@ -47,7 +47,7 @@ public class ThreadAeroporto extends Thread{
 	
 	private void aviaoManobrando() { //procedimento para randomizar o tempo de manobra
 		
-		System.out.println("O avi�o "+idAviao+" est� manobrando");
+		System.out.println("O avião "+idAviao+" está manobrando");
 		int tempo = (int)((Math.random()*5)+3);	//aleatoriza um tempo entre 3 e 7 segundos
 		try {
 			sleep(tempo);
@@ -58,7 +58,7 @@ public class ThreadAeroporto extends Thread{
 	
 	private void aviaoTaxiando() { //procedimento para randomizar o tempo de taxiamento
 		
-		System.out.println("O avi�o "+idAviao+" est� taxiando");
+		System.out.println("O avião "+idAviao+" está taxiando");
 		int tempo = (int)((Math.random()*6)+5);//aleatoriza um tempo entre 5 e 10 segundos
 		try {
 			sleep(tempo);
@@ -70,9 +70,9 @@ public class ThreadAeroporto extends Thread{
 	private void aviaoDecolando(int pista) { //procedimento para randomizar o tempo de decolagem e dizer qual pista ele decolar�
 		
 		if(pista == 1) {
-			System.out.println("O avi�o "+idAviao+" est� decolando pela pista Norte");
+			System.out.println("O avião "+idAviao+" está decolando pela pista Norte");
 		} else {
-			System.out.println("O avi�o "+idAviao+" est� decolando pela pista Sul");
+			System.out.println("O avião "+idAviao+" está decolando pela pista Sul");
 		}
 		
 		int tempo = (int)((Math.random()*4)+1);//aleatoriza um tempo entre 1 e 4 segundos
