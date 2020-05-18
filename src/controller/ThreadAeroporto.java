@@ -1,9 +1,10 @@
 package controller;
-//teste git
+
 import java.util.concurrent.Semaphore;
 
 public class ThreadAeroporto extends Thread{
 	
+	private int fatorTempo = 500;
 	private int idAviao;
 	private Semaphore semaforoPista;
 	private Semaphore pistaSul;
@@ -48,7 +49,7 @@ public class ThreadAeroporto extends Thread{
 	private void aviaoManobrando() { //procedimento para randomizar o tempo de manobra
 		
 		System.out.println("O avião "+idAviao+" está manobrando");
-		int tempo = (int)((Math.random()*5)+3);	//aleatoriza um tempo entre 3 e 7 segundos
+		int tempo = (int)((Math.random()*5)+3)*fatorTempo;	//aleatoriza um tempo entre 3 e 7 segundos
 		try {
 			sleep(tempo);
 		} catch (InterruptedException e) {
@@ -59,7 +60,7 @@ public class ThreadAeroporto extends Thread{
 	private void aviaoTaxiando() { //procedimento para randomizar o tempo de taxiamento
 		
 		System.out.println("O avião "+idAviao+" está taxiando");
-		int tempo = (int)((Math.random()*6)+5);//aleatoriza um tempo entre 5 e 10 segundos
+		int tempo = (int)((Math.random()*6)+5)*fatorTempo;//aleatoriza um tempo entre 5 e 10 segundos
 		try {
 			sleep(tempo);
 		} catch (InterruptedException e) {
@@ -75,7 +76,7 @@ public class ThreadAeroporto extends Thread{
 			System.out.println("O avião "+idAviao+" está decolando pela pista Sul");
 		}
 		
-		int tempo = (int)((Math.random()*4)+1);//aleatoriza um tempo entre 1 e 4 segundos
+		int tempo = (int)((Math.random()*4)+1)*fatorTempo;//aleatoriza um tempo entre 1 e 4 segundos
 		try {
 			sleep(tempo);
 		} catch (InterruptedException e) {
@@ -85,7 +86,7 @@ public class ThreadAeroporto extends Thread{
 	
 	private void aviaoAfastando() { //procedimento para randomizar o tempo de afastamento da �rea
 		
-		int tempo = (int)((Math.random()*6)+3);//aleatoriza um tempo entre 3 e 8 segundos
+		int tempo = (int)((Math.random()*6)+3)*fatorTempo;//aleatoriza um tempo entre 3 e 8 segundos
 		try {
 			sleep(tempo);
 		} catch (InterruptedException e) {
