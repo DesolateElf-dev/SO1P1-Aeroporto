@@ -21,7 +21,7 @@ public class ThreadAeroporto extends Thread{
 	public void run() { //procedimento decolagem em 4 fases
 		
 		try {
-			semaforoPista.acquire();//semaforo para dois aviÔøΩes circulando na pista
+			semaforoPista.acquire();//semaforo para dois aviıes circulando na pista
 			aviaoManobrando();
 			aviaoTaxiando();
 			
@@ -39,7 +39,7 @@ public class ThreadAeroporto extends Thread{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println("O avi√£o "+idAviao+" se afastou da √°rea");
+			System.out.println("O avi„o "+idAviao+" se afastou da ·rea");
 			semaforoPista.release();
 			pistaSul.release();
 			pistaNorte.release();
@@ -48,7 +48,7 @@ public class ThreadAeroporto extends Thread{
 	
 	private void aviaoManobrando() { //procedimento para randomizar o tempo de manobra
 		
-		System.out.println("O avi√£o "+idAviao+" est√° manobrando");
+		System.out.println("O avi„o "+idAviao+" est· manobrando");
 		int tempo = (int)((Math.random()*5)+3)*fatorTempo;	//aleatoriza um tempo entre 3 e 7 segundos
 		try {
 			sleep(tempo);
@@ -59,7 +59,7 @@ public class ThreadAeroporto extends Thread{
 	
 	private void aviaoTaxiando() { //procedimento para randomizar o tempo de taxiamento
 		
-		System.out.println("O avi√£o "+idAviao+" est√° taxiando");
+		System.out.println("O avi„o "+idAviao+" est· taxiando");
 		int tempo = (int)((Math.random()*6)+5)*fatorTempo;//aleatoriza um tempo entre 5 e 10 segundos
 		try {
 			sleep(tempo);
@@ -71,9 +71,9 @@ public class ThreadAeroporto extends Thread{
 	private void aviaoDecolando(int pista) { //procedimento para randomizar o tempo de decolagem e dizer qual pista ele decolarÔøΩ
 		
 		if(pista == 1) {
-			System.out.println("O avi√£o "+idAviao+" est√° decolando pela pista Norte");
+			System.out.println("O avi„o "+idAviao+" est· decolando pela pista Norte");
 		} else {
-			System.out.println("O avi√£o "+idAviao+" est√° decolando pela pista Sul");
+			System.out.println("O avi„o "+idAviao+" est· decolando pela pista Sul");
 		}
 		
 		int tempo = (int)((Math.random()*4)+1)*fatorTempo;//aleatoriza um tempo entre 1 e 4 segundos
@@ -84,7 +84,7 @@ public class ThreadAeroporto extends Thread{
 		}
 	}
 	
-	private void aviaoAfastando() { //procedimento para randomizar o tempo de afastamento da ÔøΩrea
+	private void aviaoAfastando() { //procedimento para randomizar o tempo de afastamento da ·rea
 		
 		int tempo = (int)((Math.random()*6)+3)*fatorTempo;//aleatoriza um tempo entre 3 e 8 segundos
 		try {
