@@ -12,3 +12,5 @@ O aeroporto reúne, por ciclo, 12 aeronaves que podem decolar pela
 pista norte ou pela pista sul (decisão aleatória). Mas, apenas 2 aviões
 podem circular pela área de decolagem ao mesmo tempo.
 Fazer uma aplicação em Java que resolva o problema.
+
+https://youtu.be/9J2dZw3hcNk
